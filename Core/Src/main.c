@@ -71,7 +71,15 @@ static void MX_USART1_UART_Init(void);
 void procesa_rx(void)
 {
   //procedimiento donde se procesan los datos
-   // uartx_write_text(&huart1, UARTRX1.trama_rx);
+  // Procedimiento donde se procesan los datos recibidos por UART1
+  if (strstr((char *)UARTRX1.trama_rx, "1"))
+  {
+    HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, GPIO_PIN_SET);
+  }
+  else if (strstr((char *)UARTRX1.trama_rx, "0"))
+  {
+    HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, GPIO_PIN_RESET);
+  }
 }
 /* USER CODE END 0 */
 
